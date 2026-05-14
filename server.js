@@ -3,7 +3,13 @@ const app = express();
 const path = require('path');
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost:27017/NewWaveDB');
+mongoose
+	.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/NewWaveDB')
+	.then(() => console.log('Connected to MongoDB'))
+	.catch((err) => {
+		console.error('MongoDB connection error:', err);
+		process.exit(1);
+	});
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
