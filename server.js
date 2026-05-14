@@ -4,7 +4,10 @@ const path = require('path');
 const mongoose = require('mongoose');
 
 mongoose
-	.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/NewWaveDB')
+	.connect(
+		process.env.MONGODB_URI ||
+			'mongodb+srv://rafalniestrzeba_db_user:8ItxHRMnphtL3aru@cluster0.y7zib6b.mongodb.net/NewWaveDB?retryWrites=true&w=majority',
+	)
 	.then(() => console.log('Connected to MongoDB'))
 	.catch((err) => {
 		console.error('MongoDB connection error:', err);
